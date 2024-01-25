@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>JavaScript Calculator</title>
+
+  <style>
+    h1 {
+      text-align: center;
+      padding: 25px;
+      background-color: #B0C4DE;
+      color: #191970;
+    }
+
+    #clear {
+      width: 100px;
+      border: 5px white;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: black;
+    }
+
+    .formstyle {
+      width: 260px;
+      height: 520px;
+      margin: auto;
+      border: 5px solid black;
+      border-radius: 0px;
+      padding: 20px;
+    }
+
+    input {
+      width: 50px;
+      background-color: #006400;
+      color: white;
+      border: 3px solid black;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 5px;
+      font-size: 15px;
+    }
+
+    #calc {
+      width: 200px;
+      border: 5px solid black;
+      border-radius: 3px;
+      padding: 20px;
+      margin: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Calculator</h1>
+  <div class="formstyle">
+    <form name="form1">
+
+      <!-- This input box shows the button pressed by the user in the calculator. -->
+      <input id="calc" type="text" name="answer"> <br> <br>
+
+      <!-- Display the calculator buttons on the screen. -->
+      <!-- onclick() function display the number pressed by the user. -->
+      <input type="button" value="1" onclick="appendToAnswer('1')">
+      <input type="button" value="2" onclick="appendToAnswer('2')">
+      <input type="button" value="3" onclick="appendToAnswer('3')">
+      <input type="button" value="+" onclick="appendToAnswer('+')"> <br> <br>
+
+      <input type="button" value="4" onclick="appendToAnswer('4')">
+      <input type="button" value="5" onclick="appendToAnswer('5')">
+      <input type="button" value="6" onclick="appendToAnswer('6')">
+      <input type="button" value="-" onclick="appendToAnswer('-')"> <br> <br>
+
+      <input type="button" value="7" onclick="appendToAnswer('7')">
+      <input type="button" value="8" onclick="appendToAnswer('8')">
+      <input type="button" value="9" onclick="appendToAnswer('9')">
+      <input type="button" value="*" onclick="appendToAnswer('*')"> <br> <br>
+
+     
+      <input type="button" value="0" onclick="appendToAnswer('0')">
+      <input type="button" value="." onclick="appendToAnswer('.')">
+      <input type="button" value="/" onclick="appendToAnswer('/')">
+      <input type="button" value="=" onclick="calculateResult()">
+
+      <!-- Basic Trigonometric Functions in Degrees -->
+<br> <br>
+      <input type="button" value="sin" onclick="calculateTrigonometric('sin')">
+      <input type="button" value="cos" onclick="calculateTrigonometric('cos')">
+      <input type="button" value="tan" onclick="calculateTrigonometric('tan')"> <br> <br>
+
+      <!-- Square and Cube Functions -->
+      <input type="button" value="x²" onclick="calculatePower(2)">
+      <input type="button" value="x³" onclick="calculatePower(3)">
+<input type="button" value="Clear All" onclick="clearAll()" id="clear">
+
+      <!-- When we click on the '=' button, the onclick() shows the sum results on the calculator screen. -->
+       <br>
+
+      <!-- Display the Clear button and erase all data entered by the user. -->
+       <br>
+
+    </form>
+  </div>
+
+  <script>
+    function appendToAnswer(value) {
+      form1.answer.value += value;
+    }
+
+    function calculateResult() {
+      form1.answer.value = eval(form1.answer.value);
+    }
+
+    function calculateTrigonometric(operation) {
+      var value = parseFloat(form1.answer.value);
+      if (!isNaN(value)) {
+        // Convert degrees to radians
+        var radians = (value * Math.PI) / 180;
+
+        switch (operation) {
+          case 'sin':
+            form1.answer.value = Math.sin(radians);
+            break;
+          case 'cos':
+            form1.answer.value = Math.cos(radians);
+            break;
+          case 'tan':
+            form1.answer.value = Math.tan(radians);
+            break;
+        }
+      } else {
+        form1.answer.value = 'Error';
+      }
+    }
+
+    function calculatePower(power) {
+      var value = parseFloat(form1.answer.value);
+      if (!isNaN(value)) {
+        form1.answer.value = Math.pow(value, power);
+      } else {
+        form1.answer.value = 'Error';
+      }
+    }
+
+    function clearAll() {
+      form1.answer.value = '';
+    }
+  </script>
+</body>
+
+</html>
